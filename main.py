@@ -84,7 +84,8 @@ class AutonomousSearchEngine:
         self.learning_mechanism = LearningMechanism()
 
     def process_search_query(self, query):
-        entities, topics, sentiment = self.search_query_analyzer.analyze_search_query(query)
+        entities, topics, sentiment = self.search_query_analyzer.analyze_search_query(
+            query)
 
         for entity in entities:
             url = self.retrieve_url_based_on_entity(entity)
@@ -96,7 +97,8 @@ class AutonomousSearchEngine:
             self.learning_mechanism.update_model(text_classification)
             self.learning_mechanism.update_model(named_entities)
 
-            self.recommendation_engine.generate_recommendations([content_sentiment, topics])
+            self.recommendation_engine.generate_recommendations(
+                [content_sentiment, topics])
 
         self.recommendation_engine.display_recommendations()
         self.privacy_handler.handle_data(self.learning_mechanism.model)
